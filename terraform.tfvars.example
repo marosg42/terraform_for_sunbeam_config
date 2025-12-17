@@ -1,0 +1,16 @@
+# Example terraform.tfvars file
+# Copy this to terraform.tfvars and fill in your values
+
+aggregate_hosts       = ["compute-1", "compute-2", "compute-3"]
+aggregate_name        = "overcommit-aggregate"
+project_suffixes      = ["1", "2", "3", "4"]
+user_password         = "changeme"
+network_cidr          = "192.168.1.0/24"
+external_network_name = "external-network"
+
+# Project quotas (applied to all projects)
+quota_vcpus           = 64
+quota_instances       = 20
+quota_ram             = 128000
+quota_security_groups = 10
+quota_volumes         = 10
