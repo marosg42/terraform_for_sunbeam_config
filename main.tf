@@ -166,6 +166,15 @@ resource "openstack_compute_flavor_v2" "cpu2_ram4_disk16" {
   rx_tx_factor = 1.0
 }
 
+resource "openstack_compute_flavor_v2" "cpu2_ram8_disk16" {
+  name         = "cpu2-ram8-disk16"
+  ram          = 8192
+  vcpus        = 2
+  disk         = 16
+  is_public    = true
+  rx_tx_factor = 1.0
+}
+
 resource "openstack_compute_flavor_v2" "cpu2_ram8_disk20" {
   name         = "cpu2-ram8-disk20"
   ram          = 8192
@@ -176,10 +185,19 @@ resource "openstack_compute_flavor_v2" "cpu2_ram8_disk20" {
 }
 
 resource "openstack_compute_flavor_v2" "cpu4_ram16_disk50" {
-  name         = "cpu4-ram16-disk60"
+  name         = "cpu4-ram16-disk50"
   ram          = 16384
   vcpus        = 4
   disk         = 50
+  is_public    = true
+  rx_tx_factor = 1.0
+}
+
+resource "openstack_compute_flavor_v2" "juju_cpu2_ram3andhalf_disk30" {
+  name         = "juju_cpu2_ram3andhalf_disk30"
+  ram          = 3584
+  vcpus        = 2
+  disk         = 30
   is_public    = true
   rx_tx_factor = 1.0
 }

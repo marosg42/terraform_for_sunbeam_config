@@ -29,8 +29,10 @@ This Terraform configuration creates OpenStack infrastructure for our pipeline t
 6. **Compute Flavors**:
    - `cpu2-ram4-disk50`: 2 vCPUs, 4GB RAM, 50GB disk
    - `cpu2-ram4-disk16`: 2 vCPUs, 4GB RAM, 16GB disk
+   - `cpu2-ram8-disk16`: 2 vCPUs, 8GB RAM, 16GB disk
    - `cpu2-ram8-disk20`: 2 vCPUs, 8GB RAM, 20GB disk
-   - `cpu4-ram16-disk60`: 4 vCPUs, 16GB RAM, 50GB disk
+   - `cpu4-ram16-disk50`: 4 vCPUs, 16GB RAM, 50GB disk
+   - `juju_cpu2_ram3andhalf_disk30`: 2 vCPUs, 3.5GB RAM, 30GB disk
 
 ## Prerequisites
 
