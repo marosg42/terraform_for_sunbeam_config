@@ -201,4 +201,40 @@ resource "openstack_compute_flavor_v2" "juju_cpu2_ram3andhalf_disk30" {
   is_public    = true
   rx_tx_factor = 1.0
 }
+# Flavours to use Ceph
+resource "openstack_compute_flavor_v2" "cpu2_ram4_disk0" {
+  name         = "cpu2-ram4-disk0"
+  ram          = 4096
+  vcpus        = 2
+  disk         = 0
+  is_public    = true
+  rx_tx_factor = 1.0
+}
+
+resource "openstack_compute_flavor_v2" "cpu2_ram8_disk0" {
+  name         = "cpu2-ram8-disk0"
+  ram          = 8192
+  vcpus        = 2
+  disk         = 0
+  is_public    = true
+  rx_tx_factor = 1.0
+}
+
+resource "openstack_compute_flavor_v2" "cpu4_ram16_disk0" {
+  name         = "cpu4-ram16-disk0"
+  ram          = 16384
+  vcpus        = 4
+  disk         = 0
+  is_public    = true
+  rx_tx_factor = 1.0
+}
+
+resource "openstack_compute_flavor_v2" "juju_cpu2_ram3andhalf_disk0" {
+  name         = "juju_cpu2_ram3andhalf_disk0"
+  ram          = 3584
+  vcpus        = 2
+  disk         = 0
+  is_public    = true
+  rx_tx_factor = 1.0
+}
 
