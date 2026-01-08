@@ -24,7 +24,7 @@ This Terraform configuration creates OpenStack infrastructure for our pipeline t
    - Instances: 20 (configurable)
    - RAM: 150000 MB (configurable)
    - Security Groups: 100 (configurable)
-   - Volumes: 10 (configurable)
+   - Volumes: 25 (configurable)
 
 6. **Compute Flavors**:
    - `cpu2-ram4-disk50`: 2 vCPUs, 4GB RAM, 50GB disk
@@ -33,6 +33,10 @@ This Terraform configuration creates OpenStack infrastructure for our pipeline t
    - `cpu2-ram8-disk20`: 2 vCPUs, 8GB RAM, 20GB disk
    - `cpu4-ram16-disk50`: 4 vCPUs, 16GB RAM, 50GB disk
    - `juju_cpu2_ram3andhalf_disk30`: 2 vCPUs, 3.5GB RAM, 30GB disk
+   - `cpu2-ram4-disk0`: 2 vCPUs, 4GB RAM, 0GB disk (using Ceph)
+   - `cpu2-ram8-disk0`: 2 vCPUs, 8GB RAM, 0GB disk (using Ceph)
+   - `cpu4-ram16-disk0`: 4 vCPUs, 16GB RAM, 0GB disk (using Ceph)
+   - `juju_cpu2_ram3andhalf_disk0`: 2 vCPUs, 3.5GB RAM, 0GB disk (using Ceph)
 
 ## Prerequisites
 
@@ -81,7 +85,7 @@ This Terraform configuration creates OpenStack infrastructure for our pipeline t
 - `quota_instances` (optional): Number of instances quota per project (default: 20)
 - `quota_ram` (optional): RAM quota in MB per project (default: 150000)
 - `quota_security_groups` (optional): Number of security groups quota per project (default: 100)
-- `quota_volumes` (optional): Number of volumes quota per project (default: 10)
+- `quota_volumes` (optional): Number of volumes quota per project (default: 25)
 - `flavors_to_delete` (optional): List of flavor names to delete (default: legacy m1.* flavors)
 
 ## Outputs
