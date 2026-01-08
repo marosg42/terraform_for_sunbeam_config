@@ -61,7 +61,7 @@ variable "quota_security_groups" {
 variable "quota_volumes" {
   description = "Number of volumes quota for each project"
   type        = number
-  default     = 10
+  default     = 25
 }
 
 variable "flavors_to_delete" {
