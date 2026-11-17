@@ -86,7 +86,7 @@ resource "openstack_networking_subnet_v2" "sqa_subnet" {
   count           = length(var.project_suffixes)
   name            = "sqa-subnet-${var.project_suffixes[count.index]}"
   network_id      = openstack_networking_network_v2.sqa_network[count.index].id
-  cidr            = var.network_cidr
+  cidr            = "${var.network_cidr}.${var.project_suffixes[count.index]}.0/24"
   ip_version      = 4
   dns_nameservers = ["8.8.8.8", "8.8.4.4"]
   tenant_id       = openstack_identity_project_v3.sqa_pipeline[count.index].id
@@ -136,7 +136,7 @@ resource "openstack_blockstorage_quotaset_v3" "sqa_volume_quota" {
 # COMMENTED OUT - Flavors already deleted
 # resource "openstack_compute_flavor_v2" "flavors_to_delete" {
 #   for_each = toset(var.flavors_to_delete)
-#   
+#
 #   name  = each.value
 #   ram   = 512  # Placeholder values - will be overridden by import
 #   vcpus = 1

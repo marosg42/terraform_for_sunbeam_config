@@ -25,7 +25,8 @@ variable "user_password" {
 variable "network_cidr" {
   description = "CIDR block for project networks (e.g., 192.168.1.0/24)"
   type        = string
-  default     = "192.168.1.0/24"
+  #default     = "192.168.1.0/24"
+  default     = "192.168"
 }
 
 variable "external_network_name" {
@@ -61,7 +62,7 @@ variable "quota_security_groups" {
 variable "quota_volumes" {
   description = "Number of volumes quota for each project"
   type        = number
-  default     = 25
+  default     = 35
 }
 
 variable "flavors_to_delete" {
