@@ -33,9 +33,19 @@ output "network_ids" {
   value       = { for idx, net in openstack_networking_network_v2.sqa_network : var.project_suffixes[idx] => net.id }
 }
 
+output "network_b_ids" {
+  description = "IDs of the created second networks"
+  value       = { for idx, net in openstack_networking_network_v2.sqa_network_b : var.project_suffixes[idx] => net.id }
+}
+
 output "subnet_ids" {
   description = "IDs of the created subnets"
   value       = { for idx, subnet in openstack_networking_subnet_v2.sqa_subnet : var.project_suffixes[idx] => subnet.id }
+}
+
+output "subnet_b_ids" {
+  description = "IDs of the created second subnets"
+  value       = { for idx, subnet in openstack_networking_subnet_v2.sqa_subnet_b : var.project_suffixes[idx] => subnet.id }
 }
 
 output "router_ids" {

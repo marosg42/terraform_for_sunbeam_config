@@ -81,12 +81,31 @@ resource "openstack_networking_network_v2" "sqa_network" {
   tenant_id      = openstack_identity_project_v3.sqa_pipeline[count.index].id
 }
 
+# Create second network for each project
+resource "openstack_networking_network_v2" "sqa_network_b" {
+  count          = length(var.project_suffixes)
+  name           = "sqa-network-${var.project_suffixes[count.index]}-b"
+  admin_state_up = true
+  tenant_id      = openstack_identity_project_v3.sqa_pipeline[count.index].id
+}
+
 # Create subnets for each network
 resource "openstack_networking_subnet_v2" "sqa_subnet" {
   count           = length(var.project_suffixes)
   name            = "sqa-subnet-${var.project_suffixes[count.index]}"
   network_id      = openstack_networking_network_v2.sqa_network[count.index].id
   cidr            = "${var.network_cidr}.${var.project_suffixes[count.index]}.0/24"
+  ip_version      = 4
+  dns_nameservers = ["8.8.8.8", "8.8.4.4"]
+  tenant_id       = openstack_identity_project_v3.sqa_pipeline[count.index].id
+}
+
+# Create second subnet for each second network
+resource "openstack_networking_subnet_v2" "sqa_subnet_b" {
+  count           = length(var.project_suffixes)
+  name            = "sqa-subnet-${var.project_suffixes[count.index]}-b"
+  network_id      = openstack_networking_network_v2.sqa_network_b[count.index].id
+  cidr            = "${var.network_cidr}.${tostring(tonumber(var.project_suffixes[count.index]) + var.network_cidr_offset)}.0/24"
   ip_version      = 4
   dns_nameservers = ["8.8.8.8", "8.8.4.4"]
   tenant_id       = openstack_identity_project_v3.sqa_pipeline[count.index].id
@@ -106,6 +125,13 @@ resource "openstack_networking_router_interface_v2" "sqa_router_interface" {
   count     = length(var.project_suffixes)
   router_id = openstack_networking_router_v2.sqa_router[count.index].id
   subnet_id = openstack_networking_subnet_v2.sqa_subnet[count.index].id
+}
+
+# Attach second subnets to the same routers
+resource "openstack_networking_router_interface_v2" "sqa_router_interface_b" {
+  count     = length(var.project_suffixes)
+  router_id = openstack_networking_router_v2.sqa_router[count.index].id
+  subnet_id = openstack_networking_subnet_v2.sqa_subnet_b[count.index].id
 }
 
 # Set compute quotas for each project

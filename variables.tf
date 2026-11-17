@@ -29,6 +29,12 @@ variable "network_cidr" {
   default     = "192.168"
 }
 
+variable "network_cidr_offset" {
+  description = "Offset added to the project suffix for the second network's CIDR (e.g. suffix 1 → 192.168.11.0/24)"
+  type        = number
+  default     = 10
+}
+
 variable "external_network_name" {
   description = "Name of the external network for router gateway"
   type        = string
